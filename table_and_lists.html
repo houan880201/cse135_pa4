@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="en"> 
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Table and Lists</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./styles/main.css">
+    </head>
+    <body>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="images.html">Images</a>
+            <a href="form.html">Form</a>
+            <a href="table_and_lists.html">Table and Lists</a>
+            <a href="externals.html">Externals</a>
+        </nav>
+        
+        <div class="my-jumbotron">
+            <div class="my-container">
+                <h1>Welcome to my site!</h1>
+                <h2>Table and Lists</h2>
+                <h3>For CSE 135 HW1</h3>    
+            </div>        
+        </div>
+
+        <div class="content-container">
+            <table id="schedule-table">
+                <caption>Schedule Table...</caption>
+                <colgroup>
+                    <col class="table-col">
+                    <col class="table-col">
+                    <col class="table-col">
+                    <col class="table-col">
+                    <col class="table-col">
+                    <col class="table-col">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>Weekly</th>
+                        <th>Monday</th>
+                        <th>Tuesday</th>
+                        <th>Wednesday</th>
+                        <th>Thursday</th>
+                        <th>Friday</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>08:00</th>
+                        <td class="cse135 time-block" rowspan="2">CSE 135</td>
+                        <td class="free-time"></td>
+                        <td class="cse135 time-block" rowspan="2">CSE 135</td>
+                        <td class="free-time"></td>
+                        <td class="cse135 time-block" rowspan="2">CSE 135</td>
+                    </tr>
+                    <tr>
+                        <th>08:30</th>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>09:00</th>
+                        <td></td>
+                        <td class="time-block work" rowspan="11">Work</td>
+                        <td></td>
+                        <td class="time-block work" rowspan="11">Work</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>09:30</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>10:00</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>10:30</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>11:00</th>
+                        <td rowspan="2" class="cse11 time-block">CSE 11 Tutoring</td>
+                        <td rowspan="2" class="cse11 time-block">CSE 11 Tutoring</td>
+                        <td rowspan="2" class="cse11 time-block">CSE 11 Tutoring</td>
+                    </tr>
+                    <tr>
+                        <th>11:30</th>
+                    </tr>
+                    <tr>
+                        <th>12:00</th>
+                        <td rowspan="2" class="cse110 time-block">CSE 110</td>
+                        <td rowspan="2" class="cse110 time-block">CSE 110</td>
+                        <td rowspan="2" class="cse110 time-block">CSE 110</td>
+                    </tr>
+                    <tr>
+                        <th>12:30</th>
+                    </tr>
+                    <tr>
+                        <th>13:00</th>
+                        <td rowspan="2" class="cse151A time-block">CSE 151A</td>
+                        <td rowspan="2" class="cse151A time-block">CSE 151A</td>
+                        <td rowspan="2" class="cse151A time-block">CSE 151A</td>                
+                    </tr>
+                    <tr>
+                        <th>13:30</th>
+                    </tr>
+                    <tr>
+                        <th>14:00</th>
+                        <td></td>
+                        <td rowspan="7" class="cse110 time-block">CSE 110 Lab</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>14:30</th>
+                        <td rowspan="6" class="cse11 time-block">CSE 11 Lab Hour</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>15:00</th>
+                        <td rowspan="5" class="gym time-block">Workout</td>
+                        <td></td>
+                        <td rowspan="5" class="gym time-block">Workout</td>
+                    </tr>
+                    <tr>
+                        <th>15:30</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>16:00</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>16:30</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>17:00</th>
+                        <td></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td class="tfooter-text" colspan="6">The Laziness Begins...</td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <div class="list-container">
+                <h2>Winter 2020 Classes: </h2>
+                <ul>
+                    <li>CSE 110</li>
+                    <li>CSE 135</li>
+                    <li>CSE 151A</li>
+                </ul>
+            </div>
+
+            <div class="list-container">
+                <h2>Next Todos: </h2>
+                <ol>
+                    <li>Lab Report</li>
+                    <li>UI improvements</li>
+                    <li>Prepare for Quizz</li>
+                </ol>
+            </div>
+
+            <div class="list-container">
+                <h2>Deadlines: </h2>
+                <dl>
+                    <dt>25th January 2020</dt>
+                    <dd>Lab Report</dd>
+                    <dd>UI Fix</dd>
+                    <dt>29th January 2020</dt>
+                    <dd>Quiz</dd>
+                </dl>
+            </div>
+
+        </div>
+
+    <footer>
+        <script src="./scripts/main.js"></script>
+    </footer>
+    </body>
+</html>

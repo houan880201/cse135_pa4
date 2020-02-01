@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="en"> 
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Form</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./styles/main.css">
+    </head>
+    <body>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="images.html">Images</a>
+            <a href="form.html">Form</a>
+            <a href="table_and_lists.html">Table and Lists</a>
+            <a href="externals.html">Externals</a>
+        </nav>
+
+        <div class="my-jumbotron">
+            <div class="my-container">
+                <h1>Welcome to my site!</h1>
+                <h2>Form</h2>
+                <h3>For CSE 135 HW1</h3>    
+            </div>        
+        </div>
+
+
+        <div class="content-container">
+            <h1>Personal Test</h1>
+            <form class="form-page" autocomplete="on" action="http://httpbin.org/post" method="POST">
+                <fieldset>
+                    <legend>Name:</legend>
+                    <input autofocus tabindex="1" required type="text" name="name" value="" maxlength="150"/>    
+                    <input type="text" value="READONLY" readonly>
+                    <input type="text" value="DISABLED" disabled>
+                </fieldset>
+                <br/>
+                <fieldset>
+                    <legend>Personal Details</legend>
+                    <label>Initial?</label>
+                    <input tabindex="2" title="Your Initial - only two letters" type="text" pattern="[A-Za-z]{2}">
+                    <br/>
+                    <label for="understand-why">Understand why you are here?</label>
+                    <input id="understand-why" tabindex="3" type="button" value="Yes"/>
+                    <br/>
+                    <label for="know-me">We've talked?</label>
+                    <input id="know-me" tabindex="4" checked type="checkbox" value="Yes"/>
+                    <br/>
+                    <label for="color-fav">Favorite color?</label>
+                    <input id="color-fav" tabindex="5" type="color"/>
+                    <br/>
+                    <label for="birthday">Birthday</label>
+                    <input id="birthday" tabindex="6" type="date" value="2019-01-01"/>
+                    <br/>
+                    <label for="time">What time is it?</label>
+                    <input id="time" tabindex="7" type="datetime-local"/>
+                    <br/>
+                    <label>Email?</label>
+                    <input tabindex="8" type="email" placeholder="random@gmail.com"/>
+                    <br/>
+                    <label>Enter Password for account?</label>
+                    <input tabindex="9" type="password" />
+                    <br/>
+                    <label>Hidden Question you cannot input?</label>
+                    <input tabindex="10" type="hidden" />
+                    <br/>
+                    <label>Resume?</label>
+                    <input tabindex="11" type="file" multiple/>
+                    <br/>
+                    <label>Favorite Month?</label>
+                    <input tabindex="12" type="month" />
+                    <br/>
+                    <label>Favorite Number ?</label>
+                    <input tabindex="13" type="number" />
+                    <br/>
+                    <label>Gender?</label>
+                    M: <input tabindex="14" type="radio" value="M"/>
+                    F: <input tabindex="15" type="radio" value="F"/>
+                    <br/>
+                    <label>Confidence?</label>
+                    Low <input type="range" min="0" max="150"/> High
+                    <br/>
+                    <label>Last Qry String?</label>
+                    <input type="search" name="search-qry">
+                    <br/>
+                    <label>Phone Number?</label>
+                    <input type="tel">
+                    <br/>
+                    <label>Personal Website</label>
+                    <input type="url">
+                    <br/>
+                    <label>Filled in week?</label>
+                    <input type="week">
+                    <br/>
+                </fieldset>
+                <br/>
+                <fieldset>
+                    <legend>Describe Yourself</legend>
+                    <textarea rows="10">
+                    </textarea>
+                </fieldset>
+                <br/>
+                <fieldset>
+                    <legend>Guess my favorite number:</legend>
+                    <input list="numbers" name="fav-num" />
+                    <datalist id="numbers">
+                        <option value="1">
+                        <option value="2">
+                        <option value="3">
+                        <option value="4">
+                        <option value="5">
+                    </datalist>
+                </fieldset>
+                <br/>
+                <fieldset>
+                    <legend>Do I like ...?</legend>
+                    <label for="sushi">Sushi?</label>
+                    <input id="sushi" type="checkbox" name="food"/>
+                    <label for="chocolate">Chocolate?</label>
+                    <input id="chocolate" type="checkbox" name="food"/>
+                    <label for="pizza">Pizza?</label>
+                    <input id="pizza" type="checkbox" name="food"/>
+                </fieldset>
+                <br/>
+                <fieldset>
+                    <legend>How well do I know you?</legend>
+                    <meter min="0" max="100" low="33" high="66" optimum="95" value="80">
+                        at 80
+                    </meter>
+                </fieldset>
+                <br/>
+                <fieldset>
+                    <legend>My favorite athlete?</legend>
+                    <label for="athlete-select">Choose an Athlete:</label>
+                        <select id="athlete-select">
+                            <optgroup label="NBA">
+                                <option>Steph Curry</option>
+                                <option>Lebron James</option>
+                                <option>Kobe Bryant</option>
+                            </optgroup>
+                            <optgroup label="MLB">
+                                <option>Derek Jeter</option>
+                                <option>A-Rod</option>
+                            </optgroup>
+                        </select>
+                </fieldset>
+                <br/>
+                <fieldset>
+                    <legend>Random Math Check</legend>
+                    <input type="range" id="second-num" name="second-num" value="99" /> +
+                    <input type="range" id="first-num" name="first-num" value="0" /> =
+                    <output name="result" for="first-num second-num">99</output>
+                </fieldset>
+                <div class="form-progress-container">
+                    <label for="form-progress">Form Progress:</label>
+                    <progress id="form-progress" max="100" value="100"> 100% </progress>
+                </div>
+                <br/>
+                <h3 id="submit-text">
+                    Press Click the Submit Button or the Gif to submit:
+                </h3>
+                <br/>
+                <div class="form-bot-container">
+                    <input id="submit-gif" type="image" src="assets/images/tap.gif" alt="Submit">
+                    <input type="reset" >
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+        </div>
+
+
+    <footer>
+        <script src="./scripts/main.js"></script>
+    </footer>
+
+    </body>
+</html>

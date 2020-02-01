@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="en"> 
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>My Page</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./styles/main.css">
+    </head>
+    <body>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="images.html">Images</a>
+            <a href="form.html">Form</a>
+            <a href="table_and_lists.html">Table and Lists</a>
+            <a href="externals.html">Externals</a>
+        </nav>
+        
+        <div class="my-jumbotron">
+            <div class="my-container">
+                <h1>Welcome to my site!</h1>
+                <h2>This is Hou-An (Howard) Lin</h2>
+                <h3>For CSE 135 HW1</h3>    
+            </div>        
+        </div>
+
+        <div class="content-container">
+            <h1>My Profile</h1>
+            <p>
+                This is a paragraph about myself. I am a student at <em>UCSD</em> studying <i>Computer Science</i>.
+            </p>
+            <p>
+                These are some of the technical stacks I have learned up to now...
+                <br/>
+                <code>C++, Java, Python ...</code>
+            </p>
+
+            <p>This is my favorite quote...</p>
+
+            <pre>Start Early, Start Often</pre>
+
+            <address>
+                I lived in Taipei, Taiwan for 18 years 
+                and I lived in San Diego, CA for 2 years.
+            </address>
+
+            <p>This is how I live my life</p>
+            <img src="assets/images/wanwan.jpeg" class="wanwan" alt="wanwan"/>
+            
+            <details>
+                <summary>A little more about me...</summary>
+                <p>I am almost 21 years old!!!</p>
+            </details>
+
+            <form class="second-calculation" oninput="x.value=parseInt(second.value)*parseInt(minute.value)">
+                <input type="range" min="0" max="60" id="second" value="30"> Seconds
+                <input type="range" min="0" max="60" id="minute" value="30"> Minutes
+                =<output name="x" for="second minute"></output> Seconds
+            </form>
+
+
+        </div>
+
+        <footer>
+            <script src="./scripts/main.js"></script>
+        </footer>
+        
+    </body>
+
+</html>
