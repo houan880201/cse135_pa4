@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="en"> 
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Reporter Test</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./styles/main.css">
+    </head>
+    <body>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="images.html">Images</a>
+            <a href="form.html">Form</a>
+            <a href="table_and_lists.html">Table and Lists</a>
+            <a href="externals.html">Externals</a>
+            <a href="reportertest.html">ReporterTest</a>
+        </nav>
+
+        <div class="my-jumbotron">
+            <div class="my-container">
+                <h1>Welcome to my site!</h1>
+                <h2>Form</h2>
+                <h3>For CSE 135 HW1</h3>    
+            </div>        
+        </div>
+
+
+        <div class="content-container">
+            <table id="static-data-table">
+                <caption>
+                    Static Data
+                    <h4 class='error-msg' id='static-error'></h4>
+                </caption>
+                <colgroup>
+                    <col class="table-col">
+                    <col class="table-col">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th class="header_row">Data</th>
+                        <td class="header_row">Value</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th class='static-row'>User Agent</th>
+                        <td class='static-row' id='user-agent'></td>
+                    </tr>
+                    <tr>
+                        <th class='static-row'>User Language</th>
+                        <td class='static-row' id='user-language'></td>
+                    </tr>
+
+                    <tr>
+                        <th class='static-row'>Cookies On</th>
+                        <td class='static-row' id='cookies'></td>
+                    </tr>
+
+                    <tr>
+                        <th class='static-row'>Javascript On</th>
+                        <td class='static-row' id='js-on'></td>
+                    </tr>
+
+                    <tr>
+                        <th class='static-row'>Images On</th>
+                        <td class='static-row' id='img-on'></td>
+                    </tr>
+
+                    <tr>
+                        <th class='static-row'>CSS On</th>
+                        <td class='static-row'  id='css-on'></td>
+                    </tr>
+
+                    <tr>
+                        <th class='static-row'>Available Screen (H X W)</th>
+                        <td class='static-row' id='avail-screen'></td>
+                    </tr>
+
+                    <tr>
+                        <th class='static-row'>Window Size (H X W)</th>
+                        <td class='static-row' id='window-size'></td>
+                    </tr>
+
+                    <tr>
+                        <th class='static-row'>Connection Type</th>
+                        <td class='static-row' id='connection'></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <script>
+                        let static_data = JSON.parse(localStorage.getItem('static_data'));
+                        if (static_data != null) {
+                            document.getElementById('static-error').textContent = "";
+                            document.getElementById('user-agent').textContent = static_data['user-agent'] == null ? "" : static_data['user-agent']
+                            document.getElementById('user-language').textContent = static_data['user-lang'] == null ? "" : static_data['user-lang']
+                            document.getElementById('cookies').textContent = static_data['cookies'] == null ? "" : static_data['cookies']
+                            document.getElementById('js-on').textContent = static_data['js'] == null ? "" : static_data['js']
+                            document.getElementById('img-on').textContent = static_data['img'] == null ? "" : static_data['img']
+                            document.getElementById('css-on').textContent = static_data['css'] == null ? "" : static_data['css']
+                            let avail = document.getElementById('avail-screen')
+                            avail.textContent = static_data['avail_h'] == null || static_data['avail_w'] == null
+                                        ? ( 
+                                            "" 
+                                        ): (
+                                            static_data['avail_h'] + " X " + static_data['avail_w']
+                                        )
+                            let win = document.getElementById('window-size')
+                            win.textContent = static_data['win_h'] == null || static_data['win_w'] == null
+                                        ? ( 
+                                            "" 
+                                        ): (
+                                            static_data['win_h'] + " X " + static_data['win_w']
+                                        )
+                            
+                            document.getElementById('connection').textContent = static_data['connection'] == null ? "" : static_data['connection']
+                        } else {
+                            document.getElementById('static-error').textContent = "Please go to other pages to collect data before checking on this page."
+                        }
+                    </script>
+                </tfoot>
+            </table>
+            <table id="static-data-table">
+                <caption>
+                    <h1 id='performance-tbl-title'>Performance Data on Index</h1>
+                    <h2>Click on Buttons below to show data</h2>
+                    <h4 class='error-msg' id='performance-error'></h4>
+                    <div>
+                        <button class='btn' id='index-btn' onclick='btn_click(this.value)' value='Index'>Index</button>
+                        <button class='btn' id='imgs-btn' onclick='btn_click(this.value)' value='Images'>Images</button>
+                        <button class='btn' id='form-btn' onclick='btn_click(this.value)' value='Form'>Form</button>
+                        <button class='btn' id='tl-btn' onclick='btn_click(this.value)' value='Table_and_lists'>Table and Lists</button>
+                        <button class='btn' id='ext-btn' onclick='btn_click(this.value)' value='Externals'>Externals</button>
+                        <script>
+                            function btn_click(title){
+                                document.getElementById('performance-tbl-title').textContent 
+                                    = "Performance Data on " + title
+                                fillTable(title)
+                            }
+                        </script>
+                    </div>
+                </caption>
+                <colgroup>
+                    <col class="table-col">
+                    <col class="table-col">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th class="header_row">Data</th>
+                        <td class="header_row">Value</td>
+                    </tr>
+                </thead>
+                <tbody id='performance-body'>
+                    <tr>
+                        <th class='static-row'>Start (Timestamp)</th>
+                        <td class='static-row' id='start-time'></td>
+                    </tr>
+
+                    <tr>
+                        <th class='static-row'>Stop (Timestamp)</th>
+                        <td class='static-row' id='end-time'></td>
+                    </tr>
+
+                    <tr>
+                        <th class='static-row'>Load (loadEventEnd - responseStart)</th>
+                        <td class='static-row' id='load-time'></td>
+                    </tr>
+
+                    <tr>
+                        <th class='header_row' colspan="2">Additional Information (timestamp)</th>
+                    </tr>
+
+                    <tr>
+                        <th class='static-row'>navigationStart </th>
+                        <td class='static-row' id='navigationStart'></td>
+                    </tr>
+
+                    <tr>
+                        <th class='static-row'>unloadEventStart </th>
+                        <td class='static-row' id='unloadEventStart'></td>
+                    </tr>
+
+                    <tr>
+                        <th class='static-row'>unloadEventEnd </th>
+                        <td class='static-row' id='unloadEventEnd'></td>
+                    </tr>
+
+                    <tr>
+                        <th class='static-row'>redirectStart </th>
+                        <td class='static-row' id='redirectStart'></td>
+                    </tr>
+
+                    <tr>
+                        <th class='static-row'>redirectEnd </th>
+                        <td class='static-row' id='redirectEnd'></td>
+                    </tr>
+
+                    <tr>
+                        <th class='static-row'>fetchStart </th>
+                        <td class='static-row' id='fetchStart'></td>
+                    </tr>
+
+                    <tr>
+                        <th class='static-row'>domainLookupStart </th>
+                        <td class='static-row' id='domainLookupStart'></td>
+                    </tr>
+                    
+                    <tr>
+                        <th class='static-row'>domainLookupEnd </th>
+                        <td class='static-row' id='domainLookupEnd'></td>
+                    </tr>
+
+                    <tr>
+                        <th class='static-row'>connectStart </th>
+                        <td class='static-row' id='connectStart'></td>
+                    </tr>
+
+                    <tr>
+                        <th class='static-row'>connectEnd </th>
+                        <td class='static-row' id='connectEnd'></td>
+                    </tr>
+
+                    <tr>
+                        <th class='static-row'>secureConnectionStart </th>
+                        <td class='static-row' id='secureConnectionStart'></td>
+                    </tr>
+
+                    <tr>
+                        <th class='static-row'>requestStart </th>
+                        <td class='static-row' id='requestStart'></td>
+                    </tr>
+
+                    <tr>
+                        <th class='static-row'>responseStart </th>
+                        <td class='static-row' id='responseStart'></td>
+                    </tr>
+
+                    <tr>
+                        <th class='static-row'>responseEnd </th>
+                        <td class='static-row' id='responseEnd'></td>
+                    </tr>
+
+                    <tr>
+                        <th class='static-row'>domLoading </th>
+                        <td class='static-row' id='domLoading'></td>
+                    </tr>
+
+                    <tr>
+                        <th class='static-row'>domInteractive </th>
+                        <td class='static-row' id='domInteractive'></td>
+                    </tr>
+
+                    <tr>
+                        <th class='static-row'>domContentLoadedEventStart </th>
+                        <td class='static-row' id='domContentLoadedEventStart'></td>
+                    </tr>
+
+                    <tr>
+                        <th class='static-row'>domContentLoadedEventEnd </th>
+                        <td class='static-row' id='domContentLoadedEventEnd'></td>
+                    </tr>
+
+                    <tr>
+                        <th class='static-row'>domComplete </th>
+                        <td class='static-row' id='domComplete'></td>
+                    </tr>
+
+                    <tr>
+                        <th class='static-row'>loadEventStart </th>
+                        <td class='static-row' id='loadEventStart'></td>
+                    </tr>
+                    
+                    <tr>
+                        <th class='static-row'>loadEventEnd </th>
+                        <td class='static-row' id='loadEventEnd'></td>
+                    </tr>
+
+                </tbody>
+                <tfoot>
+                    <script>
+                        function fillTable(e) {
+                            let performance_data = JSON.parse(localStorage.getItem(e.toLowerCase() + '_performance_data'))
+                            if (performance_data != null){
+                                document.getElementById('performance-error').textContent = "";
+                                document.getElementById('start-time').textContent = performance_data['start'] == null ? "" : performance_data['start']
+                                document.getElementById('end-time').textContent = performance_data['stop'] == null ? "" : performance_data['stop']
+                                document.getElementById('load-time').textContent = performance_data['loadTime'] == null ? "" : performance_data['loadTime'] + "ms"
+                                let t = performance_data['pt']
+                                for(var key in t){
+                                    document.getElementById(key).textContent = t[key] == null ? "" : t[key]
+                                }
+                            } else {
+                                document.getElementById('performance-error').textContent = "You haven't visited " + e + " page yet.";
+                                var rows = document.getElementById("performance-body").getElementsByTagName('td'), i;
+                                for(i = 0; i < rows.length; ++i) {
+                                    rows[i].textContent = "";
+                                }
+                            }
+                        }
+                    </script>
+                </tfoot>
+            </table>
+
+            <div class='caption'>Dynamic Data</div>
+
+            <section>
+                <h1 id='dynamic-tbl-title'>Index</h1>
+                <h2>Click on Buttons below to show data</h2>
+                <div>
+                    <button id='index-btn-dynamic' class='btn' onclick='btn_click_dynamic(this.value)' value='Index'>Index</button>
+                    <button id='imgs-btn-dynamic' class='btn' onclick='btn_click_dynamic(this.value)' value='Images'>Images</button>
+                    <button id='form-btn-dynamic' class='btn' onclick='btn_click_dynamic(this.value)' value='Form'>Form</button>
+                    <button id='tl-btn-dynamic' class='btn' onclick='btn_click_dynamic(this.value)' value='Table_and_lists'>Table and Lists</button>
+                    <button id='ext-btn-dynamic' class='btn' onclick='btn_click_dynamic(this.value)' value='Externals'>Externals</button>
+                    <button class="btn btn2" onclick=clearAll()>Purge All</button>
+                </div>
+                <h4 class='error-msg' id='dynamic-error'></h4>
+                <div class='scrollable'>
+                    <ul class='dynamic_list' id='list_dynamic'>
+                    </ul>
+                </div>
+            </section>         
+            <script>
+                function btn_click_dynamic(title){
+
+                    clearList();
+                    document.getElementById('dynamic-tbl-title').textContent 
+                        = "Dynamic Data on " + title;
+
+                    if(localStorage.getItem(title.toLowerCase()+"_dynamic_data") == null){
+                        document.getElementById('dynamic-error').textContent = "No Dynamic Data Detected";
+                        return;
+                    }
+
+                    let events = JSON.parse(localStorage.getItem(title.toLowerCase()+"_dynamic_data"))['events'];
+                    let event_list = [];
+
+                    for(let i in events){
+                        event_list.push(JSON.parse(events[i]));
+                    }
+
+                    for(var i in event_list){
+                        // console.log(event_list[i]);
+                        writeList(event_list[i], i, title);
+                        writeDiv(event_list[i], i, title);
+                    }
+                }
+                
+
+                function getDetails(event){
+                    let idx = event.target.parentNode.getAttribute('index');
+                    let title = event.target.parentNode.getAttribute('page');
+                    let div = document.getElementById(idx + title);
+                    if (div.style.display == 'block'){
+                        div.style.display = 'none';
+                        event.target.textContent = "Details";
+                    } else {
+                        div.style.display = 'block';
+                        event.target.textContent = "Collpase";
+                    }
+
+                }
+
+                function compareJson(js1, js2){
+                    for(var i in js1){
+                        if (i == "sourceCapabilities" || i =="path") {
+                            continue;
+                        }
+                        if(js1[i] != js2[i]){
+                            return false;
+                        }
+                    } 
+                    return true;
+                }
+
+
+                function deleteItem(event){
+                    let idx = event.target.parentNode.getAttribute("index");
+                    let title = event.target.parentNode.getAttribute('page');
+                    let div = document.getElementById(idx + title);
+                    let json = JSON.parse(div.getElementsByTagName("pre")[0].textContent);
+                    let li = event.target.parentNode;
+                    let events = JSON.parse(localStorage.getItem(title.toLowerCase()+"_dynamic_data"));
+
+                    let temp = events['events'][0];
+
+                    let isConfirmed = confirm("Are you sure?");
+
+                    if (!isConfirmed){
+                        return;
+                    }
+                    temp = JSON.parse(temp);
+                    
+                    for(var i = 0; i < events['events'].length; i++){
+                        temp = JSON.parse(events['events'][i]);
+                        if (compareJson(temp, json)){
+                            events['events'].splice(i, 1);
+                            break;
+                        }                    
+                    }
+
+                    div.remove();
+                    li.remove();
+                    if(events['events'].length == 0){
+                        localStorage.removeItem(title.toLowerCase()+"_dynamic_data");
+                    } else {
+                        localStorage.setItem(title.toLowerCase()+"_dynamic_data", JSON.stringify(events));
+                    }
+                }
+
+                function getColor(type){
+                    switch(type){
+                        case "click":
+                            return "red";
+                        case "mouseover": 
+                            return "orange";
+                        case "keydown":
+                            return "blue";
+                        case "scroll":
+                            return "green";
+                        case "beforeunload":
+                            return "black";
+                    }
+                }
+
+                function writeList(event, index, page){
+                    let list = document.getElementById('list_dynamic');
+                    let li = document.createElement('li');
+                    li.appendChild(document.createTextNode(event.type));
+                    li.className='dynamic_item';
+                    li.setAttribute("page", page.toLowerCase());
+                    li.setAttribute("index", index);
+                    li.style.color = getColor(li.textContent);
+                    let btn = document.createElement('button');
+                    btn.className='btn btn3 purge-one';
+                    btn.textContent = "Purge";
+                    btn.onclick = deleteItem;
+                    li.appendChild(btn);
+                    let btn2 = document.createElement('button');
+                    btn2.onclick = getDetails;
+                    btn2.className='btn detail-btn';
+                    btn2.textContent = "Details";
+                    li.appendChild(btn2);
+                    list.appendChild(li);
+                }
+
+                function writeDiv(event, index, page){
+                    let list = document.getElementById('list_dynamic');
+                    let div = document.createElement('div');
+                    div.setAttribute("id", index + page.toLowerCase())
+                    let pre = document.createElement('pre');
+                    div.innerHTML = "<pre>" + JSON.stringify(event, undefined, 2) +"</pre>";
+                    // div.textContent = JSON.stringify(event);
+                    div.setAttribute("page", page.toLowerCase());
+                    div.setAttribute("index", index);
+                    div.style.width = "80%";
+                    div.className = "scrollable-sm";
+                    div.style.display = 'none';
+                    list.appendChild(div);
+                }
+
+                function clearList(){
+                    document.getElementById('list_dynamic').innerHTML = "";
+                }
+
+                function clearAll() {
+                    confirm("Are you sure you want to remove all data?", localStorage.clear());
+                    clearList();
+                    fillTable("");
+                }
+            </script>
+
+        </div>
+
+
+
+
+    <footer>
+        <script src="./scripts/main.js"></script>
+    </footer>
+
+    </body>
+</html>
