@@ -197,8 +197,14 @@ function idleTimer() {
         clearTimeout(timer);
         pause = idle;
         if (pause > 0){
-            console.log("User was idle for " + pause)
-            localStorage.setItem("lastPause", pause);
+            console.log("User was idle for " + pause);
+            let e = {
+                "type": "pause",
+                "time_in_seconds": pause + "s",
+            }
+
+            events_list.push(JSON.stringify(e));
+            // localStorage.setItem("lastPause", pause);
         }
         clearInterval(interval );
         idle = 0;

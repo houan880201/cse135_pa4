@@ -173,14 +173,16 @@ nav a:hover {
 
 .dynamic_item {
     height: 50px;
+    border: 1px dashed #39393A;
 }
 
 .dynamic_list {
     text-align: justify;
-    margin-left: 5%;
+    margin-left: 15%;
+    margin-right: 15%;
     list-style-position: inside;
+    vertical-align: center;
 }
-
 
 .purge-one {
     float: right;

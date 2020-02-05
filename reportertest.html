@@ -126,7 +126,6 @@
                 <caption>
                     <h1 id='performance-tbl-title'>Performance Data on Index</h1>
                     <h2>Click on Buttons below to show data</h2>
-                    <h4 class='error-msg' id='performance-error'></h4>
                     <div>
                         <button class='btn' id='index-btn' onclick='btn_click(this.value)' value='Index'>Index</button>
                         <button class='btn' id='imgs-btn' onclick='btn_click(this.value)' value='Images'>Images</button>
@@ -141,6 +140,7 @@
                             }
                         </script>
                     </div>
+                    <h4 class='error-msg' id='performance-error'></h4>
                 </caption>
                 <colgroup>
                     <col class="table-col">
@@ -422,6 +422,8 @@
                             return "green";
                         case "beforeunload":
                             return "black";
+                        case "pause":
+                            return "purple";
                     }
                 }
 
@@ -466,9 +468,12 @@
                 }
 
                 function clearAll() {
-                    confirm("Are you sure you want to remove all data?", localStorage.clear());
-                    clearList();
-                    fillTable("");
+                    let isConfirm = confirm("Are you sure you want to remove all data?");
+                    if(isConfirm){
+                        localStorage.clear();
+                        clearList();
+                        fillTable("");
+                    }
                 }
             </script>
 
