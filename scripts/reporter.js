@@ -199,8 +199,8 @@ function idleTimer() {
         if (pause > 0){
             console.log("User was idle for " + pause);
             let e = {
-                "type": "pause",
-                "time_in_seconds": pause + "s",
+                "type": "idle",
+                "time_in_seconds": (pause+2) + "s",
             }
 
             events_list.push(JSON.stringify(e));
