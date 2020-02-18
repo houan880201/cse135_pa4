@@ -18,6 +18,7 @@ exports.postSession = functions.https.onRequest((req, res) => {
 
 	console.log("aosidjasoidjaod");
 	console.log(req.body)
+	console.log(JSON.parse(req.body))
 
 	// db.collection("sessions").add({
 	// 	"user-agent": req.body['user-agent'],

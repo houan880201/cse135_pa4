@@ -14,10 +14,11 @@ function start() {
             console.log(json.email + ", " + json.password);
         }
     };
-    var data = {
-        "user-agent": navigator.userAgent, 
-        "language": navigator.language
-    };
+    var data = JSON.stringify({
+        userAgent: navigator.userAgent, 
+        language: navigator.language
+    });
+    var formData = new FormData()
+    formData.append("user-agent", navigator.userAgent)
     xhr.send(data);
-    console.log(res)
 }
