@@ -214,7 +214,7 @@ function idleTimer() {
 
     function setTime() {
         ++idle;
-        console.log(idle)
+        // console.log(idle)
     }
 }
 
