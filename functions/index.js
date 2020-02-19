@@ -1,8 +1,8 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
+const cors = require('cors')({origin: true});
 
 
- 
 admin.initializeApp(functions.config().firebase);
 
 exports.helloWorld = functions.https.onRequest((req, res) => {
@@ -14,26 +14,46 @@ exports.helloWorld = functions.https.onRequest((req, res) => {
 
 exports.postSession = functions.https.onRequest((req, res) => {
 	
-	var db = admin.firestore();
+	cors(req, res, () => {
 
-	console.log("aosidjasoidjaod");
-	console.log(req.body)
-	console.log(JSON.parse(req.body))
+		var db = admin.firestore();
 
-	// db.collection("sessions").add({
-	// 	"user-agent": req.body['user-agent'],
-	// 	"language": req.body['language']
-	// })
-	// .then(function(docRef) {
-	// 	res.status(200).send("Successfully Posted" + docRef.id)
-	// 	return docRef.id
-	// })
-	// .catch(function(error) {
-	// 	res.status(200).send("Failed to Post " + docRef.id)
-	// 	return error
-	// })
+		console.log("aosidjasoidjaod");
+		var json = JSON.parse(req.body)
 
+		if (json['sessionID']) {
 
-	return res
+			db.collection("sessions")
+				.doc(json['sessionID'])
+				.get()
+				.then(function(docRef) {
+					res.status(200).send(docRef.id)
+					res.body['id'] = docRef.id
+					return res
+				})
+				.catch(function(error) {
+					res.status(200).send("Failed to Post ")
+				})
+
+		} 
+		else{
+			db.collection("sessions").add({
+				userAgent: json['userAgent'],
+				language: json['language']
+			})
+			.then(function(docRef) {
+				res.status(200).send(docRef.id)
+				console.log("COOKIE : " + docRef.id)
+				res.body['id'] = docRef.id
+				return res
+			})
+			.catch(function(error) {
+				res.status(200).send("Failed to Post ")
+				return error
+			})
+		}
+
+		return res
+	});
 
 });
