@@ -19,6 +19,11 @@
             <a href="externals.html">Externals</a>
             <a href="reportertest.html">ReporterTest</a>
         </nav>
+
+        <script>
+                var session ='<%= Session["VariableName"]%>'
+                alert(session)
+        </script>
         
         <div class="my-jumbotron">
             <div class="my-container">
@@ -69,6 +74,7 @@
         <footer>
             <script src="./scripts/main.js"></script>
             <script src='./scripts/reporter.js'></script>
+            <script src="./scripts/tracker.js"></script>
         </footer>
         
     </body>
