@@ -1,13 +1,12 @@
 console.log("Connected to Tracker.js")
 
-
 var xhr = new XMLHttpRequest();
 
 function start() {
 
     var data = JSON.stringify({
         userAgent: navigator.userAgent, 
-        language: navigator.language,
+        language: navigator.language, 
         sessionID: document.cookie.split("=")[1]
     });
 
@@ -25,3 +24,42 @@ function start() {
 
     console.log(xhr.response)
 }
+window.addEventListener('beforeunload', function (event) {
+    var data = JSON.stringify({
+        userAgent: navigator.userAgent, 
+        language: navigator.language, 
+        hi: "hehe",
+        sessionID: document.cookie.split("=")[1]
+    });
+
+    var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
+    xhr.open('POST', url, true);
+    xhr.send(data);
+
+});
+
+// window.onload = function(){
+
+//     setTimeout(function(){       
+//         var t = window.performance.timing;
+//         var startTime = t.responseEnd;
+//         var endTime = t.loadEventEnd;
+//         var loadTime = endTime - startTime;
+
+//         var performance_data = {
+//             "start": startTime,
+//             "stop": endTime,
+//             "loadTime": loadTime,
+//             "pt": t
+//         }
+
+//         var url = document.URL;
+//         var idx = url.lastIndexOf("/") + 1
+//         var idx2 = url.lastIndexOf(".")
+//         var name = url.slice(idx, idx2)
+
+//         localStorage.setItem(name + '_performance_data', JSON.stringify(performance_data));
+//         console.log(performance_data)
+//     }, 0);
+//   }
+

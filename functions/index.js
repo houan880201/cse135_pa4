@@ -34,6 +34,10 @@ exports.postSession = functions.https.onRequest((req, res) => {
 				.catch(function(error) {
 					res.status(200).send("Failed to Post ")
 				})
+			
+			db.collections("sessions").update({
+				hi: json['hi']
+			})
 
 		} 
 		else{
