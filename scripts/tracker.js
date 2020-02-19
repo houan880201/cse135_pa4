@@ -7,6 +7,7 @@ function start() {
     var data = JSON.stringify({
         userAgent: navigator.userAgent, 
         language: navigator.language, 
+        hi: "hehe",
         sessionID: document.cookie.split("=")[1]
     });
 
@@ -24,7 +25,10 @@ function start() {
 
     console.log(xhr.response)
 }
-window.addEventListener('beforeunload', function (event) {
+
+
+function test() {
+
     var data = JSON.stringify({
         userAgent: navigator.userAgent, 
         language: navigator.language, 
@@ -35,8 +39,7 @@ window.addEventListener('beforeunload', function (event) {
     var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
     xhr.open('POST', url, true);
     xhr.send(data);
-
-});
+}
 
 // window.onload = function(){
 
