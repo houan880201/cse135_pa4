@@ -1,4 +1,4 @@
-console.log("Connected to Trsadasdadadsadaddsadasdsadadacker.js")
+console.log("Connected to Tracker.js")
 
 var xhr = new XMLHttpRequest();
 
@@ -42,7 +42,7 @@ let window_width = window.innerWidth;
 // connection type
 let connection_type = navigator.connection.effectiveType;
 
-
+//static data
 let static_data = {
     "cookies": cookies_on,
     "js": js_check,
@@ -55,12 +55,13 @@ let static_data = {
     "connection": connection_type    
 }
 
-console.log("i will fucking shoot myself");
+//performance data tracking 
 var t = window.performance.timing;
 var startTime = t.responseEnd;
 var endTime = t.loadEventEnd;
 var loadTime = endTime - startTime;
 
+//performance data object 
 var performance_data = {
     "start": startTime,
     "stop": endTime,
@@ -68,19 +69,20 @@ var performance_data = {
     "pt": t
 }
 
+//performance data json 
 var performanceData = JSON.stringify(performance_data);
 var data = JSON.stringify({
     userAgent: navigator.userAgent, 
     language: navigator.language, 
-    hello: "kill me please",
-    hi: "hehe",
     sessionID: document.cookie.split("=")[1],
     performanceData: performanceData,
     staticData: JSON.stringify(static_data)
 });
 
+//URL for our cloud function 
 var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
 
+//waits for response and then assigns cookie 
 xhr.onreadystatechange = function () {
     if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
     console.log(xhr.responseText);
@@ -88,13 +90,15 @@ xhr.onreadystatechange = function () {
     }
 };
 
+//sends HTTP post request 
 xhr.open('POST', url, true);
 xhr.send(data);
 
-console.log(xhr.response)
+//logs the cookie 
+console.log("Cookie is " + xhr.response)
 
 
-
+//Test function 
 function start() {
     console.log("i will fucking shoot myself");
     var t = window.performance.timing;
@@ -192,10 +196,10 @@ function test(){
     console.log("hioaijdoasidajd");
   }
 
-
-  
+//events list array   
 let events_list = []
 
+//function to stringify the event in format 
 function stringifyEvent(e) {
     const obj = {};
     for (let k in e) {
@@ -208,35 +212,49 @@ function stringifyEvent(e) {
     }, ' ');
   }
 
+let clickCount = window.localStorage.getItem("click") || 1;
 window.addEventListener('click', (event) => {
     event = event || window.event;
     let temp = stringifyEvent(event);
+    clickCount++;
+    window.localStorage.setItem("click", clickCount);
     events_list.push(temp);
 })
 
 
+let mouseoverCount = window.localStorage.getItem("mouseover") || 1;
 window.addEventListener('mouseover', (event) => {
     event = event || window.event;
+    mouseoverCount++;
+    window.localStorage.setItem("mouseover", mouseoverCount);
     events_list.push(stringifyEvent(event));
 })
 
 
 let keydown = 0;
+let keydownCount = window.localStorage.getItem("keydown") || 1;
 window.addEventListener('keydown', (event) => {
     event = event || window.event;
+    keydownCount++;
+    window.localStorage.setItem("keydown", keydownCount);
     events_list.push(stringifyEvent(event));
 })
 
 
 let scroll = 0;
+let scrollCount = window.localStorage.getItem("scroll") || 1;
 window.addEventListener('scroll', (event) => {
     event = event || window.event;
+    scrollCount++;
+    window.localStorage.setItem("scroll", scrollCount);
     events_list.push(stringifyEvent(event));
-})
+})  
 
-
+let beforeUnloadCount = window.localStorage.getItem("unload") || 1;
 window.addEventListener('beforeunload', (event) => {
     event = event || window.event;
+    beforeUnloadCount++;
+    window.localStorage.setItem("unload", beforeUnloadCount);
     events_list.push(stringifyEvent(event));
 })
 
@@ -247,13 +265,17 @@ window.onbeforeunload = () => {
         "events": events_list
     }
 
+    console.log("clickCount is " + clickCount);
     var data = JSON.stringify({
         userAgent: navigator.userAgent, 
         language: navigator.language, 
-        hello: "kill me please",
-        hi: "hehe",
         sessionID: document.cookie.split("=")[1],
         performanceData: performanceData,
+        click: clickCount,
+        mouseover: mouseoverCount,
+        keydown: keydownCount,
+        scroll: scrollCount,
+        beforeUnload: beforeUnloadCount,
         dynamicData: JSON.stringify(dynamic_data)
     });
 

@@ -39,7 +39,11 @@ exports.postSession = functions.https.onRequest((req, res) => {
 			console.log(json);
 			db.collection("sessions")
 				.doc(json['sessionID']).update({
-					dynamicData: json['dynamicData']
+					click: json['click'],
+					mouseover: json['mouseover'],
+					keydown: json['keydown'],
+					scroll: json['scroll'],
+					beforeUnload: json['beforeUnload']
 				});
 		} 
 		else{
