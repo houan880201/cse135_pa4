@@ -35,17 +35,23 @@ exports.postSession = functions.https.onRequest((req, res) => {
 					res.status(200).send("Failed to Post ")
 				})
 
+			console.log("about to update")
+			console.log(json);
 			db.collection("sessions")
 				.doc(json['sessionID']).update({
-					hi: "hehe"
+					dynamicData: json['dynamicData']
 				});
 		} 
 		else{
 			db.collection("sessions").add({
 				userAgent: json['userAgent'],
-				language: json['language']
+				language: json['language'],
+				performanceData: json['performanceData'],
+				staticData: json['staticData']
 			})
 			.then(function(docRef) {
+				console.log("alright fucker");
+				console.log(json)
 				res.status(200).send(docRef.id)
 				console.log("COOKIE : " + docRef.id)
 				res.body['id'] = docRef.id
