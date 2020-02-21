@@ -79,8 +79,11 @@ var data = JSON.stringify({
     staticData: JSON.stringify(static_data)
 });
 
+
+/*
 //URL for our cloud function 
-var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
+// var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
+var url = "http://localhost:5001/cse135-pa3/us-central1/postSession"
 
 //waits for response and then assigns cookie 
 xhr.onreadystatechange = function () {
@@ -96,7 +99,7 @@ xhr.send(data);
 
 //logs the cookie 
 console.log("Cookie is " + xhr.response)
-
+*/
 
 //Test function 
 function start() {
@@ -122,7 +125,8 @@ function start() {
         performanceData: performanceData
     });
 
-    var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
+    // var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
+    var url = "http://localhost:5001/cse135-pa3/us-central1/postSession"
 
     xhr.onreadystatechange = function () {
         if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
@@ -138,20 +142,8 @@ function start() {
 }
 
 
-// function test() {
-
-//     var data = JSON.stringify({
-//         userAgent: navigator.userAgent, 
-//         language: navigator.language, 
-//         hi: "hehe",
-//         sessionID: document.cookie.split("=")[1]
-//     });
-
-//     var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
-//     xhr.open('POST', url, true);
-//     xhr.send(data);
-// }
 var xhrTest = new XMLHttpRequest();
+
 function test(){
     console.log("hello")       
     var t = window.performance.timing;
@@ -179,7 +171,8 @@ function test(){
         performanceData: "oasidjasoidjasoidj"
     });
 
-    var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
+    // var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
+    var url = "http://localhost:5001/cse135-pa3/us-central1/postSession"
 
     xhrTest.onreadystatechange = function () {
         if(xhrTest.readyState === XMLHttpRequest.DONE && xhrTest.status === 200) {
@@ -258,7 +251,8 @@ window.addEventListener('beforeunload', (event) => {
     events_list.push(stringifyEvent(event));
 })
 
-window.onbeforeunload = () => {
+window.onload = (event) => {
+    event.preventDefault();
     var url = document.URL;
 
     let dynamic_data = {
@@ -279,18 +273,18 @@ window.onbeforeunload = () => {
         dynamicData: JSON.stringify(dynamic_data)
     });
 
-    var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
+    // var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
+    var url = "http://localhost:5001/cse135-pa3/us-central1/postSession"
 
     xhr.onreadystatechange = function () {
         if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
           console.log(xhr.responseText);
-        //   document.cookie = "sessionID=" + xhr.responseText
+          document.cookie = "sessionID=" + xhr.responseText
+
         }
+        xhr.open('POST', url, true);
+        xhr.send(data);
     };
-
-    xhr.open('POST', url, true);
-    xhr.send(data);
-
-    console.log(xhr.response)
+    return false;
     // localStorage.setItem(name + "_dynamic_data", JSON.stringify(dynamic_data));
 }

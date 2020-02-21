@@ -26,8 +26,39 @@
                 <h3>For CSE 135 HW1</h3>    
             </div>        
         </div>
+        <h1>Database</h1>
+        <div class="showdb">
+        </div>
+
+
     <footer>
-        <script src="./scripts/main.js"></script>
+        <script>
+        window.onload = (event) => {
+            event.preventDefault();
+            var xhr = new XMLHttpRequest();
+
+            var data = JSON.stringify({
+                sessionID: document.cookie.split("=")[1]
+            });
+
+            // var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
+            var url = "http://localhost:5001/cse135-pa3/us-central1/showdb"
+
+            xhr.onreadystatechange = function () {
+                if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                     console.log(xhr.responseText);
+                }
+                xhr.open('POST', url, true);
+                xhr.send(data);
+            };
+            return xhr.responseText
+            // localStorage.setItem(name + "_dynamic_data", JSON.stringify(dynamic_data));
+        }
+
+
+
+        </script>
+        <!-- <script src="./scripts/main.js"></script> -->
     </footer>
 
     </body>
