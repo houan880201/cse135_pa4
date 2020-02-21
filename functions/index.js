@@ -18,11 +18,9 @@ exports.postSession = functions.https.onRequest((req, res) => {
 
 		var db = admin.firestore();
 
-		console.log("aosidjasoidjaod");
 		var json = JSON.parse(req.body)
 
 		if (json['sessionID']) {
-
 			db.collection("sessions")
 				.doc(json['sessionID'])
 				.get()
@@ -54,7 +52,6 @@ exports.postSession = functions.https.onRequest((req, res) => {
 				staticData: json['staticData']
 			})
 			.then(function(docRef) {
-				console.log("alright fucker");
 				console.log(json)
 				res.status(200).send(docRef.id)
 				console.log("COOKIE : " + docRef.id)
