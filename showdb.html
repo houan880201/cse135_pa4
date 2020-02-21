@@ -1,65 +1,137 @@
 <!DOCTYPE html>
 
-<html class="no-js" lang="en"> 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Reporter Test</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="./styles/main.css">
-    </head>
-    <body>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="images.html">Images</a>
-            <a href="form.html">Form</a>
-            <a href="table_and_lists.html">Table and Lists</a>
-            <a href="externals.html">Externals</a>
-            <a href="reportertest.html">ReporterTest</a>
-        </nav>
+<html class="no-js" lang="en">
 
-        <div class="my-jumbotron">
-            <div class="my-container">
-                <h1>Welcome to my site!</h1>
-                <h2>Form</h2>
-                <h3>For CSE 135 HW1</h3>    
-            </div>        
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ShowDB</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./styles/main.css">
+</head>
+
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="images.html">Images</a>
+        <a href="form.html">Form</a>
+        <a href="table_and_lists.html">Table and Lists</a>
+        <a href="externals.html">Externals</a>
+        <a href="reportertest.html">ReporterTest</a>
+    </nav>
+
+    <div class="my-jumbotron">
+        <div class="my-container">
+            <h1>Welcome to my site!</h1>
+            <h2>Form</h2>
+            <h3>For CSE 135 HW1</h3>
         </div>
-        <h1>Database</h1>
-        <div class="showdb">
-        </div>
+    </div>
+    <h1 style="text-align: center;">Database</h1>
+    <div class="showdb">
+    </div>
 
 
     <footer>
         <script>
-        window.onload = (event) => {
-            event.preventDefault();
-            var xhr = new XMLHttpRequest();
+            window.onload = (event) => {
+                event.preventDefault();
+                var xhr = new XMLHttpRequest();
 
-            var data = JSON.stringify({
-                sessionID: document.cookie.split("=")[1]
-            });
+                var data = JSON.stringify({
+                    sessionID: document.cookie.split("=")[1]
+                });
 
-            // var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
-            var url = "http://localhost:5001/cse135-pa3/us-central1/showdb"
+                // var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
+                var url = "http://localhost:5001/cse135-pa3/us-central1/showdb"
 
-            xhr.onreadystatechange = function () {
-                if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                     console.log(xhr.responseText);
-                }
-                xhr.open('POST', url, true);
-                xhr.send(data);
-            };
-            return xhr.responseText
-            // localStorage.setItem(name + "_dynamic_data", JSON.stringify(dynamic_data));
-        }
-
-
-
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                        console.log(xhr.responseText);
+                    }
+                    xhr.open('POST', url, true);
+                    xhr.send(data);
+                };
+                return xhr.responseText
+                // localStorage.setItem(name + "_dynamic_data", JSON.stringify(dynamic_data));
+            }
         </script>
+
+        <table>
+            <caption>Static Information</caption>
+            <colgroup>
+                <col style="background-color:white;">
+                <col style="background-color:white;">
+                <col style="background-color:white;">
+                <col style="background-color:white;">
+                <col style="background-color:white;">
+                <col style="background-color:white;">
+                <col style="background-color:white;">
+                <col style="background-color:white;">
+                <col style="background-color:white;">
+                <col style="background-color:white;">
+                <col style="background-color:white;">
+            </colgroup>
+
+            <thead>
+                <tr>
+                    <th>User-Agent String</th>
+                    <th>User Language</th>
+                    <th>Cookies</th>
+                    <th>JavaScript</th>
+                    <th>Images</th>
+                    <th>CSS</th>
+                    <th>Max Height</th>
+                    <th>Max Width</th>
+                    <th>Window Height</th>
+                    <th>Window Width</th>
+                    <th>Effective Connect. Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+
+        <table>
+            <caption>Performance Information</caption>
+            <colgroup>
+                <col style="background-color:white;">
+                <col style="background-color:white;">
+                <col style="background-color:white;">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>Initial Start Loading Time</th>
+                    <th>End Loading Time</th>
+                    <th>Total Time Taken</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td> </td>
+                </tr>
+            </tbody>
+        </table>
         <!-- <script src="./scripts/main.js"></script> -->
     </footer>
 
-    </body>
+</body>
+
 </html>

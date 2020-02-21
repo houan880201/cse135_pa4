@@ -80,9 +80,8 @@ var data = JSON.stringify({
 });
 
 
-/*
 //URL for our cloud function 
-// var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
+//var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
 var url = "http://localhost:5001/cse135-pa3/us-central1/postSession"
 
 //waits for response and then assigns cookie 
@@ -99,7 +98,7 @@ xhr.send(data);
 
 //logs the cookie 
 console.log("Cookie is " + xhr.response)
-*/
+
 
 //Test function 
 function start() {
@@ -125,7 +124,7 @@ function start() {
         performanceData: performanceData
     });
 
-    // var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
+    //var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
     var url = "http://localhost:5001/cse135-pa3/us-central1/postSession"
 
     xhr.onreadystatechange = function () {
@@ -171,7 +170,7 @@ function test(){
         performanceData: "oasidjasoidjasoidj"
     });
 
-    // var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
+    //var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
     var url = "http://localhost:5001/cse135-pa3/us-central1/postSession"
 
     xhrTest.onreadystatechange = function () {
@@ -273,7 +272,7 @@ window.onload = (event) => {
         dynamicData: JSON.stringify(dynamic_data)
     });
 
-    // var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
+     //var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
     var url = "http://localhost:5001/cse135-pa3/us-central1/postSession"
 
     xhr.onreadystatechange = function () {
