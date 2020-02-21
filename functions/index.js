@@ -11,6 +11,12 @@ exports.helloWorld = functions.https.onRequest((req, res) => {
 
 });
 
+exports.showdb = functions.https.onRequest((req, res) => {
+	
+	res.status(200).send('show db!');
+
+});
+
 
 exports.postSession = functions.https.onRequest((req, res) => {
 	
