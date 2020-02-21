@@ -13,32 +13,32 @@ exports.helloWorld = functions.https.onRequest((req, res) => {
 
 exports.showdb = functions.https.onRequest((req, res) => {
 	
-	// cors(req, res, () => {
+	cors(req, res, () => {
 
-	// 	var db = admin.firestore();
+		var db = admin.firestore();
 
-	// 	console.log("aosidjasoidjaod");
-	// 	var json = JSON.parse(req.body);
+		console.log("aosidjasoidjaod");
+		var json = JSON.parse(req.body);
 
-	// 	console.log(json);
+		console.log(json);
 
-	// 	db.collection("sessions")
-	// 		.doc(json["sessionID"])
-	// 		.get()
-	// 		.then(function(docRef) {
-	// 			console.log(docRef.id)
-	// 			console.log(docRef.data)
-	// 			return res.status(200).send({
-	// 				cookie: docRef.id,
-	// 				data: docRef.data()
-	// 			})
-	// 		})
-	// 		.catch(error => {
-	// 			console.log(error)
-	// 			return -1
-	// 		});
-	// })
-	res.sendFile('showdb.html', { root: '..' });
+		db.collection("sessions")
+			.doc(json["sessionID"])
+			.get()
+			.then(function(docRef) {
+				console.log(docRef.id)
+				console.log(docRef.data)
+				return res.status(200).send({
+					cookie: docRef.id,
+					data: docRef.data()
+				})
+			})
+			.catch(error => {
+				console.log(error)
+				return -1
+			});
+	})
+	// res.sendFile('showdb.html', { root: '..' });
 	//res.sendFile(path.join(__dirname, '..', '/index.html'));
 });
 
