@@ -4,13 +4,14 @@ const cors = require('cors')({origin: true});
 
 admin.initializeApp(functions.config().firebase);
 
-
+//test helloworld function
 exports.helloWorld = functions.https.onRequest((req, res) => {
 	
 	res.status(200).send('Hello World!');
 
 });
 
+//cloud function for showing db
 exports.showdb = functions.https.onRequest((req, res) => {
 	
 	cors(req, res, () => {
@@ -39,7 +40,7 @@ exports.showdb = functions.https.onRequest((req, res) => {
 	})
 });
 
-
+//post session which collects all the data: our /collect endpoint
 exports.postSession = functions.https.onRequest((req, res) => {
 	
 	cors(req, res, () => {
@@ -51,6 +52,7 @@ exports.postSession = functions.https.onRequest((req, res) => {
 		console.log(res)
 		var json = JSON.parse(req.body)
 
+		//if session already exists: updating
 		if (json['sessionID']) {
 			db.collection("sessions")
 				.doc(json['sessionID'])
@@ -63,9 +65,9 @@ exports.postSession = functions.https.onRequest((req, res) => {
 				.catch(function(error) {
 					res.status(200).send("Failed to Post ")
 				})
-
 			console.log("about to update")
 			console.log(json);
+			//updates with the dynamic data
 			db.collection("sessions")
 				.doc(json['sessionID']).update({
 					click: json['click'],
@@ -75,6 +77,7 @@ exports.postSession = functions.https.onRequest((req, res) => {
 					beforeUnload: json['beforeUnload']
 				});
 		} 
+		//if it doesnt exist then add the static data and performance data first 
 		else{
 			db.collection("sessions").add({
 				userAgent: json['userAgent'],
@@ -82,6 +85,7 @@ exports.postSession = functions.https.onRequest((req, res) => {
 				performanceData: json['performanceData'],
 				staticData: json['staticData']
 			})
+			//returns the cookie
 			.then(function(docRef) {
 				console.log(json)
 				res.status(200).send(docRef.id)
