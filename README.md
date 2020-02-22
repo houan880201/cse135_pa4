@@ -1,3 +1,9 @@
+Hou-An Lin
+Sam Huang
+Abigayle Quintana
+
+Team ASH
+
 https://cse135-pa3.firebaseapp.com/index.html
 
 Picture of collection and sessionization architecture:
