@@ -17,7 +17,6 @@ exports.showdb = functions.https.onRequest((req, res) => {
 
 		var db = admin.firestore();
 
-		console.log("aosidjasoidjaod");
 		var json = JSON.parse(req.body);
 
 		console.log(json);
@@ -38,8 +37,6 @@ exports.showdb = functions.https.onRequest((req, res) => {
 				return -1
 			});
 	})
-	// res.sendFile('showdb.html', { root: '..' });
-	//res.sendFile(path.join(__dirname, '..', '/index.html'));
 });
 
 

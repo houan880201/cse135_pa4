@@ -13,25 +13,18 @@
         td {
             height: 80px;
             color: black;
-            /* word-wrap: break-word; */
         }
     </style>
     <script>
-        // window.onload = (event) => {
         function getData(event){
-            // event.preventDefault();
             var xhr = new XMLHttpRequest();
     
             var data = JSON.stringify({
                 sessionID: document.cookie.split("=")[1]
-                // sessionID: "HZy3vsCDVpwMlq9Fjvj2"
             });
     
             console.log("SENDING")
-    
-            // var url = "https://us-central1-cse135-pa3.cloudfunctions.net/showdb";
-            // var url = "http://localhost:5001/cse135-pa3/us-central1/showdb"
-    
+        
             var url = "https://us-central1-cse135-pa3.cloudfunctions.net/showdb"
     
             console.log("Start")
@@ -40,7 +33,6 @@
             xhr.onreadystatechange = function () {
                 console.log("XHR State change")
                 if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                    // console.log(xhr.responseText);
                     parsedJson = JSON.parse(xhr.responseText)
                     console.log(parsedJson["cookie"])
                     console.log(parsedJson["data"])
@@ -49,23 +41,11 @@
                     document.getElementById("td-performance-data").innerHTML = parsedJson["data"].performanceData
                     var d = parsedJson["data"]
                     document.getElementById("td-dynamic-data").innerHTML = "Scroll: " +  d.scroll + "\n Mouseover: " + d.mouseover + "\n beforeUnload: " + d.beforeUnload + "\n keydown: " + d.keydown + " \nClick: " + d.click
-                    // document.getElementById("td-user-language").innerHTML = parsedJson["data"].language
-                    // document.getElementById("td-cookies").innerHTML = parsedJson["cookie"]
-                    // document.getElementById("td-javascript").innerHTML = parsedJson["data"].language
-                    // document.getElementById("td-image").innerHTML = parsedJson["data"].language
-                    // document.getElementById("td-css").innerHTML = parsedJson["data"].language
-                    // document.getElementById("td-max-height").innerHTML = parsedJson["data"].language
-                    // document.getElementById("td-max-width").innerHTML = parsedJson["data"].language
-                    // document.getElementById("td-window-height").innerHTML = parsedJson["data"].language
-                    // document.getElementById("td-window-width").innerHTML = parsedJson["data"].language
-                    // document.getElementById("td-effective-connect").innerHTML = parsedJson["data"].language
+
 
                 }
-                // xhr.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
             };
             xhr.send(data);
-            // return xhr.responseText
-            // localStorage.setItem(name + "_dynamic_data", JSON.stringify(dynamic_data));
         }
     </script>
 </head>
@@ -114,19 +94,6 @@
             </colgroup>
 
             <thead>
-                <!-- <tr>
-                    <th>User-Agent String</th>
-                    <th >User Language</th>
-                    <th >Cookies</th>
-                    <th >JavaScript</th>
-                    <th >Images</th>
-                    <th >CSS</th>
-                    <th >Max Height</th>
-                    <th >Max Width</th>
-                    <th >Window Height</th>
-                    <th >Window Width</th>
-                    <th >Effective Connect. Type</th>
-                </tr> -->
             </thead>
             <tbody>
                 <tr>
@@ -155,9 +122,6 @@
             </colgroup>
             <thead>
                 <tr>
-                    <!-- <th>Initial Start Loading Time</th>
-                    <th>End Loading Time</th>
-                    <th>Total Time Taken</th> -->
                 </tr>
             </thead>
             <tbody>
@@ -178,9 +142,7 @@
             </colgroup>
             <thead>
                 <tr>
-                    <!-- <th>Initial Start Loading Time</th>
-                    <th>End Loading Time</th>
-                    <th>Total Time Taken</th> -->
+                    
                 </tr>
             </thead>
             <tbody>
@@ -191,7 +153,6 @@
                 </tr>
             </tbody>
         </table>
-        <!-- <script src="./scripts/main.js"></script> -->
     <footer>
 
     </footer>

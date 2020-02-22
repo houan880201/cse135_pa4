@@ -1,5 +1,4 @@
 console.log("Connected to Tracker.js")
-console.log("is this being updated correctly");
 var xhr = new XMLHttpRequest();
 
 let cookies_on = navigator.cookieEnabled;
@@ -82,7 +81,6 @@ var data = JSON.stringify({
 function initRequest(){
     //URL for our cloud function 
     var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
-    //var url = "http://localhost:5001/cse135-pa3/us-central1/postSession"
 
     //waits for response and then assigns cookie 
     xhr.onreadystatechange = function () {
@@ -112,7 +110,6 @@ window.onload = function(){
 
 //Test function 
 function start() {
-    console.log("i will fucking shoot myself");
     var t = window.performance.timing;
     var startTime = t.responseEnd;
     var endTime = t.loadEventEnd;
@@ -135,7 +132,6 @@ function start() {
     });
 
     var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
-    //var url = "http://localhost:5001/cse135-pa3/us-central1/postSession"
 
     xhr.onreadystatechange = function () {
         if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
@@ -154,7 +150,6 @@ function start() {
 var xhrTest = new XMLHttpRequest();
 
 function test(){
-    console.log("hello")       
     var t = window.performance.timing;
     var startTime = t.responseEnd;
     var endTime = t.loadEventEnd;
@@ -186,7 +181,6 @@ function test(){
     xhrTest.onreadystatechange = function () {
         if(xhrTest.readyState === XMLHttpRequest.DONE && xhrTest.status === 200) {
             console.log(xhrTest.responseText);
-            //document.cookie = "sessionID=" + xhr.responseText
         }
     };
 
@@ -195,7 +189,6 @@ function test(){
 
     console.log(xhrTest.response)
     console.log(performance_data)
-    console.log("hioaijdoasidajd");
   }
 
 //events list array   
@@ -261,7 +254,6 @@ window.addEventListener('beforeunload', (event) => {
 })
 
 window.onbeforeunload = (event) => {
-    //event.preventDefault();
     var url = document.URL;
 
     let dynamic_data = {
@@ -283,19 +275,15 @@ window.onbeforeunload = (event) => {
     });
 
     var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
-    //var url = "http://localhost:5001/cse135-pa3/us-central1/postSession"
 
     console.log("before sending data");
     xhr.onreadystatechange = function () {
         if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
           console.log(xhr.responseText);
-          //document.cookie = "sessionID=" + xhr.responseText
         }
     };
             
     xhr.open('POST', url, true);
     xhr.send(data);
     console.log(xhr.response)
-    //return false;
-    // localStorage.setItem(name + "_dynamic_data", JSON.stringify(dynamic_data));
 }
