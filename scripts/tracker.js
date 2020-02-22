@@ -79,25 +79,30 @@ var data = JSON.stringify({
     staticData: JSON.stringify(static_data)
 });
 
+function initRequest(){
+    //URL for our cloud function 
+    //var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
+    var url = "http://localhost:5001/cse135-pa3/us-central1/postSession"
 
-//URL for our cloud function 
-//var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
-var url = "http://localhost:5001/cse135-pa3/us-central1/postSession"
+    //waits for response and then assigns cookie 
+    xhr.onreadystatechange = function () {
+        if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+        console.log(xhr.responseText);
+        document.cookie = "sessionID=" + xhr.responseText
+        }
+    };
 
-//waits for response and then assigns cookie 
-xhr.onreadystatechange = function () {
-    if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-    console.log(xhr.responseText);
-    document.cookie = "sessionID=" + xhr.responseText
-    }
-};
+    //sends HTTP post request 
+    xhr.open('POST', url, true);
+    xhr.send(data);
 
-//sends HTTP post request 
-xhr.open('POST', url, true);
-xhr.send(data);
+    //logs the cookie 
+    console.log("Cookie is " + xhr.response)
+}
 
-//logs the cookie 
-console.log("Cookie is " + xhr.response)
+window.onload = function(){
+    this.initRequest();
+}
 
 
 //Test function 
@@ -250,7 +255,7 @@ window.addEventListener('beforeunload', (event) => {
     events_list.push(stringifyEvent(event));
 })
 
-window.onload = (event) => {
+window.onbeforeunload = (event) => {
     event.preventDefault();
     var url = document.URL;
 
