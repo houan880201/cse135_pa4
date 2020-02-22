@@ -2,102 +2,110 @@ console.log("Connected to Tracker.js")
 
 var xhr = new XMLHttpRequest();
 
-let cookies_on = navigator.cookieEnabled;
-// js check
-let js_check;
-document.writeln("<img id='js-check'/>"); 
-if(document.getElementById('js-check') == null){
-    js_check = false;
-} else {
-    js_check = true;
-}
 
-// image check
-let image_check;
-if (document.getElementById('dummy') != null){
-    image_check = true;
-} else {
-    image_check = false;
-}
-
-// css check
-let css_check;
-let dummy_img = document.getElementById('dummy')
-let style = window.getComputedStyle(dummy_img)
-let width = style.getPropertyValue('width')
-if (width == "0px"){
-    css_check = true;
-} else {
-    css_check = false;
-}
-
-// available height / width
-let available_height = window.screen.height * window.devicePixelRatio;
-let available_width = window.screen.width * window.devicePixelRatio;
-
-// window height / width
-let window_height = window.innerHeight;
-let window_width = window.innerWidth;
-
-// connection type
-let connection_type = navigator.connection.effectiveType;
-
-//static data
-let static_data = {
-    "cookies": cookies_on,
-    "js": js_check,
-    "img": image_check,
-    "css": css_check,
-    "avail_h": available_height,
-    "avail_w": available_width,
-    "win_h": window_height,
-    "win_w": window_width,
-    "connection": connection_type    
-}
-
-//performance data tracking 
-var t = window.performance.timing;
-var startTime = t.responseEnd;
-var endTime = t.loadEventEnd;
-var loadTime = endTime - startTime;
-
-//performance data object 
-var performance_data = {
-    "start": startTime,
-    "stop": endTime,
-    "loadTime": loadTime,
-    "pt": t
-}
-
-//performance data json 
-var performanceData = JSON.stringify(performance_data);
-var data = JSON.stringify({
-    userAgent: navigator.userAgent, 
-    language: navigator.language, 
-    sessionID: document.cookie.split("=")[1],
-    performanceData: performanceData,
-    staticData: JSON.stringify(static_data)
-});
-
-
-//URL for our cloud function 
-//var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
-var url = "http://localhost:5001/cse135-pa3/us-central1/postSession"
-
-//waits for response and then assigns cookie 
-xhr.onreadystatechange = function () {
-    if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-    console.log(xhr.responseText);
-    document.cookie = "sessionID=" + xhr.responseText
+    let cookies_on = navigator.cookieEnabled;
+    // js check
+    let js_check;
+    document.writeln("<img id='js-check'/>"); 
+    if(document.getElementById('js-check') == null){
+        js_check = false;
+    } else {
+        js_check = true;
     }
-};
 
-//sends HTTP post request 
-xhr.open('POST', url, true);
-xhr.send(data);
+    // image check
+    let image_check;
+    if (document.getElementById('dummy') != null){
+        image_check = true;
+    } else {
+        image_check = false;
+    }
 
-//logs the cookie 
-console.log("Cookie is " + xhr.response)
+    // css check
+    let css_check;
+    let dummy_img = document.getElementById('dummy')
+    let style = window.getComputedStyle(dummy_img)
+    let width = style.getPropertyValue('width')
+    if (width == "0px"){
+        css_check = true;
+    } else {
+        css_check = false;
+    }
+
+    // available height / width
+    let available_height = window.screen.height * window.devicePixelRatio;
+    let available_width = window.screen.width * window.devicePixelRatio;
+
+    // window height / width
+    let window_height = window.innerHeight;
+    let window_width = window.innerWidth;
+
+    // connection type
+    let connection_type = navigator.connection.effectiveType;
+
+    //static data
+    let static_data = {
+        "cookies": cookies_on,
+        "js": js_check,
+        "img": image_check,
+        "css": css_check,
+        "avail_h": available_height,
+        "avail_w": available_width,
+        "win_h": window_height,
+        "win_w": window_width,
+        "connection": connection_type    
+    }
+
+    //performance data tracking 
+    var t = window.performance.timing;
+    var startTime = t.responseEnd;
+    var endTime = t.loadEventEnd;
+    var loadTime = endTime - startTime;
+
+    //performance data object 
+    var performance_data = {
+        "start": startTime,
+        "stop": endTime,
+        "loadTime": loadTime,
+        "pt": t
+    }
+
+    //performance data json 
+    var performanceData = JSON.stringify(performance_data);
+    var data = JSON.stringify({
+        userAgent: navigator.userAgent, 
+        language: navigator.language, 
+        sessionID: document.cookie.split("=")[1],
+        performanceData: performanceData,
+        staticData: JSON.stringify(static_data)
+    });
+
+function initRequest(){
+    //URL for our cloud function 
+    var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
+    //var url = "http://localhost:5001/cse135-pa3/us-central1/postSession"
+
+    console.log("hello ")
+    //waits for response and then assigns cookie 
+    xhr.onreadystatechange = function () {
+        if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+        console.log(xhr.responseText);
+        document.cookie = "sessionID=" + xhr.responseText
+        }
+    };
+
+    //sends HTTP post request 
+    xhr.open('POST', url, true);
+    xhr.send(data);
+
+    //logs the cookie 
+    console.log("Cookie is " + xhr.response)
+}
+
+window.onload = function(){
+    console.log("starting!");
+    this.initRequest();
+}
 
 
 //Test function 
@@ -124,8 +132,8 @@ function start() {
         performanceData: performanceData
     });
 
-    //var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
-    var url = "http://localhost:5001/cse135-pa3/us-central1/postSession"
+    var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
+    //var url = "http://localhost:5001/cse135-pa3/us-central1/postSession"
 
     xhr.onreadystatechange = function () {
         if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
@@ -170,8 +178,8 @@ function test(){
         performanceData: "oasidjasoidjasoidj"
     });
 
-    //var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
-    var url = "http://localhost:5001/cse135-pa3/us-central1/postSession"
+    var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
+    //var url = "http://localhost:5001/cse135-pa3/us-central1/postSession"
 
     xhrTest.onreadystatechange = function () {
         if(xhrTest.readyState === XMLHttpRequest.DONE && xhrTest.status === 200) {
@@ -250,7 +258,7 @@ window.addEventListener('beforeunload', (event) => {
     events_list.push(stringifyEvent(event));
 })
 
-window.onload = (event) => {
+window.onbeforeunload = (event) => {
     event.preventDefault();
     var url = document.URL;
 
@@ -272,8 +280,8 @@ window.onload = (event) => {
         dynamicData: JSON.stringify(dynamic_data)
     });
 
-     //var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
-    var url = "http://localhost:5001/cse135-pa3/us-central1/postSession"
+    var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
+    //var url = "http://localhost:5001/cse135-pa3/us-central1/postSession"
 
     xhr.onreadystatechange = function () {
         if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
