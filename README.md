@@ -10,7 +10,12 @@ Picture of collection and sessionization architecture:
 https://docs.google.com/drawings/d/1yIUSM3Zlq_T_fgegoBNtEAgCf6OsNFZqAa1EJqY9TbY/edit?usp=sharing
 
 
-Mininification and size comparison:
+Mininification size comparison of Tracker.js:
+
+Pre-minification size: 5522 bytes
+Minification size: 3773 bytes
+
+We performed this minimization by running it through a program that condensed the whole file into one line of code.
 
 
 Endpoints:
