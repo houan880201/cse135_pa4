@@ -1,5 +1,5 @@
 console.log("Connected to Tracker.js")
-
+console.log("is this being updated correctly");
 var xhr = new XMLHttpRequest();
 
 let cookies_on = navigator.cookieEnabled;
@@ -81,8 +81,8 @@ var data = JSON.stringify({
 
 function initRequest(){
     //URL for our cloud function 
-    //var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
-    var url = "http://localhost:5001/cse135-pa3/us-central1/postSession"
+    var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
+    //var url = "http://localhost:5001/cse135-pa3/us-central1/postSession"
 
     //waits for response and then assigns cookie 
     xhr.onreadystatechange = function () {
@@ -100,8 +100,13 @@ function initRequest(){
     console.log("Cookie is " + xhr.response)
 }
 
+let numOpen = window.localStorage.getItem("numOpen") || 0;
 window.onload = function(){
-    this.initRequest();
+    if(numOpen == 0) {
+        this.initRequest();
+        numOpen++;
+        window.localStorage.setItem("numOpen", numOpen);
+    }
 }
 
 
@@ -129,8 +134,8 @@ function start() {
         performanceData: performanceData
     });
 
-    //var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
-    var url = "http://localhost:5001/cse135-pa3/us-central1/postSession"
+    var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
+    //var url = "http://localhost:5001/cse135-pa3/us-central1/postSession"
 
     xhr.onreadystatechange = function () {
         if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
@@ -256,7 +261,7 @@ window.addEventListener('beforeunload', (event) => {
 })
 
 window.onbeforeunload = (event) => {
-    event.preventDefault();
+    //event.preventDefault();
     var url = document.URL;
 
     let dynamic_data = {
@@ -277,18 +282,20 @@ window.onbeforeunload = (event) => {
         dynamicData: JSON.stringify(dynamic_data)
     });
 
-     //var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
-    var url = "http://localhost:5001/cse135-pa3/us-central1/postSession"
+    var url = "https://us-central1-cse135-pa3.cloudfunctions.net/postSession";
+    //var url = "http://localhost:5001/cse135-pa3/us-central1/postSession"
 
+    console.log("before sending data");
     xhr.onreadystatechange = function () {
         if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
           console.log(xhr.responseText);
-          document.cookie = "sessionID=" + xhr.responseText
-
+          //document.cookie = "sessionID=" + xhr.responseText
         }
-        xhr.open('POST', url, true);
-        xhr.send(data);
     };
-    return false;
+            
+    xhr.open('POST', url, true);
+    xhr.send(data);
+    console.log(xhr.response)
+    //return false;
     // localStorage.setItem(name + "_dynamic_data", JSON.stringify(dynamic_data));
 }
