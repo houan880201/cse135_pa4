@@ -1,12 +1,14 @@
-Team ASH
-Hou-An Lin, Sam Huang, Abigayle Quintana
+Team ASH: Hou-An Lin, Sam Huang, Abigayle Quintana
+
+Link: 
 
 https://cse135-pa3.firebaseapp.com/index.html
 
 Picture of collection and sessionization architecture:
+
 https://docs.google.com/drawings/d/1yIUSM3Zlq_T_fgegoBNtEAgCf6OsNFZqAa1EJqY9TbY/edit?usp=sharing
 
-Mininification and size comparison
+Mininification and size comparison:
 
 Endpoints:
 
