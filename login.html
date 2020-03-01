@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="en"> 
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>My Page</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./styles/main.css">
+        <link rel="shortcut icon" href="">
+        <!-- <base href="/" /> -->
+    </head>
+    <body>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="images.html">Images</a>
+            <a href="form.html">Form</a>
+            <a href="table_and_lists.html">Table and Lists</a>
+            <a href="externals.html">Externals</a>
+            <a href="reportertest.html">ReporterTest</a>
+            <a href="showdb.html">Show DB</a>
+            <a href="login.html">Login</a>
+        </nav>
+
+        <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-database.js"></script>
+
+        <ul>
+        <li style="list-style-type:none; text-align:center;">
+            <button id ="loginBtn" class="custom_button">Login</button>        
+            <br>
+            <button id="logoutBtn" class="custom_button hide">Logout</button>
+        </li>
+    </ul>
+    <script src="scripts/auth.js"></script>
+
+    </body>
+</html>
